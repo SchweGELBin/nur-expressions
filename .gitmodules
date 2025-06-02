@@ -1,0 +1,6 @@
+[submodule "catspeak"]
+	path = catspeak
+	url = https://github.com/SchweGELBin/catspeak.git
+[submodule "smoos"]
+	path = smoos
+	url = https://github.com/SchweGELBin/smoos.git
