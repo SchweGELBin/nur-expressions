@@ -1,6 +1,6 @@
-[submodule "catspeak"]
-	path = catspeak
+[submodule "pkgs/catspeak"]
+	path = pkgs/catspeak
 	url = https://github.com/SchweGELBin/catspeak.git
-[submodule "smoos"]
-	path = smoos
+[submodule "pkgs/smoos"]
+	path = pkgs/smoos
 	url = https://github.com/SchweGELBin/smoos.git
