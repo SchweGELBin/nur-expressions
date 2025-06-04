@@ -9,4 +9,4 @@ let
   };
 in
 
-pkgs.callPackage "${repo}/smoos-bot/default.nix" { }
+pkgs.callPackage "${repo}/smoos-bot/default.nix" { };
