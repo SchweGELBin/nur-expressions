@@ -8,4 +8,4 @@ let
   };
 in
 
-pkgs.callPackage "${repo}/default.nix" { };
+pkgs.callPackage "${repo}/default.nix" { }
