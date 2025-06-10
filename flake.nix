@@ -13,15 +13,6 @@
       eachSystem = lib.genAttrs systems;
     in
     {
-      packages = eachSystem (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        {
-          nur = pkgs.callPackage ./default.nix { };
-          default = pkgs.callPackage ./default.nix { };
-        }
-      );
+      packages = eachSystem (system: nixpkgs.legacyPackages.${system}.callPackage ./default.nix { });
     };
 }
