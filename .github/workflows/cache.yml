@@ -6,10 +6,9 @@ on:
 
 jobs:
   cache:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ubuntu-latest, ubuntu-24.04-arm]
         pkgs: [catspeak, smoos-bot]
     steps:
     - uses: actions/checkout@v4
@@ -20,4 +19,4 @@ jobs:
       with:
         name: schwegelbin
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix-build -A ${{ matrix.pkgs }}
+    - run: nix-build --arg crossSystem '{ config = "aarch64-unknown-linux-gnu"; }' -A ${{ matrix.pkgs }}
