@@ -22,5 +22,5 @@ jobs:
     - run: |
         nix-build -A catspeak
         nix-build -A smoos-bot
-        nix-build -A smoos-cs
-        nix-build -A smoos-rs
+        #nix-build -A smoos-cs
+        #nix-build -A smoos-rs
