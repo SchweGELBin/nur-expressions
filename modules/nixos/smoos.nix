@@ -57,6 +57,7 @@ in
             Needs `SMOOS_API_TOKEN`, `SMOOS_DISCORD_ID`, `SMOOS_DISCORD_TOKEN`
           '';
         };
+        package = lib.mkPackageOption { };
       };
       cs = {
         enable = lib.mkEnableOption "Enable Super Mario Odyssey: Online Server - C#";
