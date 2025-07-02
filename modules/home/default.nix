@@ -1,1 +1,3 @@
-{ }
+{
+  default = ./all.nix;
+}
