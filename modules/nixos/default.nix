@@ -1,3 +1,3 @@
 {
-  imports = [ ./cache.nix ];
+  cache = ./cache.nix;
 }

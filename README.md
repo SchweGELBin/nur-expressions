@@ -8,4 +8,7 @@ My personal [NUR](https://github.com/nix-community/NUR) repository.
 - [smoos-rs](https://github.com/SchweGELBin/smoos/tree/main/smoos-rs) - Super Mario Odyssey: Online Server - Rust
 
 ## Modules
-- [nur.cache.enable](./modules/nixos/cache.nix)
+### Home Manager
+
+### NixOS
+- [nur.cache](./modules/nixos/cache.nix)
