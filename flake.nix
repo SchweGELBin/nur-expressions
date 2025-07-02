@@ -15,6 +15,6 @@
     {
       homeModules = import ./modules/home;
       nixosModules = import ./modules/nixos;
-      packages = eachSystem (system: nixpkgs.legacyPackages.${system}.callPackage ./pkgs { });
+      packages = eachSystem (system: nixpkgs.legacyPackages.${system}.callPackage ./default.nix { });
     };
 }
