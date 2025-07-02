@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.nur.smoos;
 in
@@ -57,7 +62,7 @@ in
             Needs `SMOOS_API_TOKEN`, `SMOOS_DISCORD_ID`, `SMOOS_DISCORD_TOKEN`
           '';
         };
-        package = lib.mkPackageOption { };
+        package = lib.mkPackageOption pkgs "smoos-bot" { };
       };
       cs = {
         enable = lib.mkEnableOption "Enable Super Mario Odyssey: Online Server - C#";
@@ -68,7 +73,7 @@ in
             Needs `SMOOS_API_TOKEN`, `SMOOS_API_TOKEN_PUB`
           '';
         };
-        package = lib.mkPackageOption { };
+        package = lib.mkPackageOption pkgs "smoos-cs" { };
       };
       rs = {
         enable = lib.mkEnableOption "Enable Super Mario Odyssey: Online Server - Rust";
