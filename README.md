@@ -12,3 +12,4 @@ My personal [NUR](https://github.com/nix-community/NUR) repository.
 
 ### NixOS
 - [nur.cache](./modules/nixos/cache.nix)
+- [nur.smoos](./modules/nixos/smoos.nix)
