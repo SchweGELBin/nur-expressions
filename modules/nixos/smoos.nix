@@ -38,8 +38,8 @@ in
           ''
           + lib.optionalString cfg.cs.settings.jsonapi ''
             sed -i '/JsonApi/{n;s/false/true/}' ./settings.json
-            sed -i -e 's/"SECRET_TOKEN_1"/"$SMOOS_API_TOKEN_PUB"/g' ./settings.json
-            sed -i -e 's/"SECRET_TOKEN_2"/"$SMOOS_API_TOKEN"/g' ./settings.json
+            sed -i -e "s/\"SECRET_TOKEN_1\"/\"$SMOOS_API_TOKEN_PUB\"/g" ./settings.json
+            sed -i -e "s/\"SECRET_TOKEN_2\"/\"$SMOOS_API_TOKEN\"/g" ./settings.json
           '';
         script = "${cfg.cs.package}/bin/Server";
         serviceConfig = {
