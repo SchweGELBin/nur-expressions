@@ -32,7 +32,10 @@ in
             if [ -f ./settings.json ]; then rm ./settings.json; fi
           ''
           + ''
-            if [ ! -f ./settings.json ]; then cp ${cfg.cs.package}/settings.json .; fi
+            if [ ! -f ./settings.json ]; then
+              cp ${cfg.cs.package}/settings.json .
+              chmod +w ./settings.json
+            fi
             sed -i -e 's/"Address":.*,/"Address": "${cfg.cs.settings.address}",/' settings.json
             sed -i -e 's/"Port":.*,/"Port": "${toString cfg.cs.settings.port}",/' settings.json
           ''
