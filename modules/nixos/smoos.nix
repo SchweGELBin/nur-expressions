@@ -120,13 +120,13 @@ in
                 type = lib.types.str;
               };
               force = lib.mkEnableOption "Replace existing settings";
+              jsonapi = lib.mkEnableOption "Enable the JsonApi, necessary if you want to use smoos-bot";
               port = lib.mkOption {
                 default = 1027;
                 description = "Your Server Port";
                 example = 1028;
                 type = lib.types.int;
               };
-              jsonapi = lib.mkEnableOption "Enable the JsonApi, necessary if you want to use smoos-bot";
             };
           };
         };
