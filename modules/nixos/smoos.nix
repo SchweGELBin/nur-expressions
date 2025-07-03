@@ -28,20 +28,19 @@ in
       smoos-cs = {
         enable = cfg.cs.enable;
         preStart =
-          lib.strings.concatLines [ ]
-          ++ lib.optionals cfg.cs.settings.force [
-            "if [ -f ./settings.json ]; then rm ./settings.json; fi"
-          ]
-          ++ [
-            "if [ ! -f ./settings.json ]; then cp ${cfg.cs.package}/settings.json .; fi"
-            "sed -i -e 's/\"Address\":.*/\"Address\": \"${cfg.cs.settings.address}\"/' settings.json"
-            "sed -i -e 's/\"Port\":.*/\"Port\": \"${toString cfg.cs.settings.port}\"/' settings.json"
-          ]
-          ++ lib.optionals cfg.cs.settings.jsonapi [
-            "sed -i '/JsonApi/{n;s/false/true/}' ./settings.json"
-            "sed -i -e 's/\"SECRET_TOKEN_1\"/\"$SMOOS_API_TOKEN_PUB\"/g' ./settings.json"
-            "sed -i -e 's/\"SECRET_TOKEN_2\"/\"$SMOOS_API_TOKEN\"/g' ./settings.json"
-          ];
+          lib.optionalString cfg.cs.settings.force ''
+            if [ -f ./settings.json ]; then rm ./settings.json; fi
+          ''
+          + ''
+            if [ ! -f ./settings.json ]; then cp ${cfg.cs.package}/settings.json .; fi
+            sed -i -e 's/"Address":.*/"Address": "${cfg.cs.settings.address}"/' settings.json
+            sed -i -e 's/"Port":.*/"Port": "${toString cfg.cs.settings.port}"/' settings.json
+          ''
+          + lib.optionalString cfg.cs.settings.jsonapi ''
+            sed -i '/JsonApi/{n;s/false/true/}' ./settings.json
+            sed -i -e 's/"SECRET_TOKEN_1"/"$SMOOS_API_TOKEN_PUB"/g' ./settings.json
+            sed -i -e 's/"SECRET_TOKEN_2"/"$SMOOS_API_TOKEN"/g' ./settings.json
+          '';
         script = "${cfg.cs.package}/bin/Server";
         serviceConfig = {
           EnvironmentFile = cfg.cs.secretFile;
