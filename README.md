@@ -13,5 +13,5 @@ My personal [NUR](https://github.com/nix-community/NUR) repository.
 
 ### NixOS
 - [nur.cache](./modules/nixos/cache.nix)
-- [nur.mixbot](./modules/nixos/mc-mixbot.nix)
+- [nur.mixbot](./modules/nixos/mixbot.nix)
 - [nur.smoos](./modules/nixos/smoos.nix)
