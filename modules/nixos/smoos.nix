@@ -9,7 +9,7 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [ ] ++ lib.optionals cfg.cs.enable [ cfg.settings.port ];
+    networking.firewall.allowedTCPPorts = [ ] ++ lib.optionals cfg.cs.enable [ cfg.cs.settings.port ];
 
     systemd.services = {
       smoos-bot = {
