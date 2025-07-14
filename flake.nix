@@ -3,10 +3,18 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    fenix = {
+      url = "github:nix-community/fenix/monthly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { self, nixpkgs }:
+    {
+      self,
+      fenix,
+      nixpkgs,
+    }:
     let
       inherit (nixpkgs) lib;
       systems = lib.systems.flakeExposed;
@@ -15,6 +23,9 @@
     {
       homeModules = import ./modules/home;
       nixosModules = import ./modules/nixos;
-      packages = eachSystem (system: nixpkgs.legacyPackages.${system}.callPackage ./default.nix { });
+      packages = eachSystem (
+        system:
+        nixpkgs.legacyPackages.${system}.callPackage ./default.nix { fenix = fenix.packages.${system}; }
+      );
     };
 }
