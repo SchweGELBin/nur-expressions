@@ -1,11 +1,15 @@
-{ fetchFromGitHub, pkgs }:
+{
+  fetchFromGitHub,
+  pkgs,
+  rustPlatform,
+}:
 let
   repo = fetchFromGitHub {
     owner = "SchweGELBin";
     repo = "MC-MiXBot";
-    tag = "v0.0.0";
-    hash = "sha256-C79pveAOc0uL/WmLg5D2u8k8da1uj/lR78kmpJgUOnU=";
+    tag = "v0.0.1";
+    hash = "sha256-unPCMk4FsTAnHUq1tfh6hcNdmJiKIcJW0aGC2xJjSVQ=";
   };
 in
 
-pkgs.callPackage "${repo}/default.nix" { }
+pkgs.callPackage "${repo}/default.nix" { rustPlatform = rustPlatform; }
