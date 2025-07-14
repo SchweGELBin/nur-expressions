@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        pkgs: [catspeak, smoos-bot, smoos-cs]
+        pkgs: [catspeak, mixbot, smoos-bot, smoos-cs]
     steps:
     - uses: actions/checkout@v4
     - uses: cachix/install-nix-action@v25
