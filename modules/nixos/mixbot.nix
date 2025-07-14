@@ -8,7 +8,26 @@ let
   cfg = config.nur.mixbot;
 in
 {
-  config = lib.mkIf cfg.enable { };
+  config = lib.mkIf cfg.enable {
+    systemd.services.mixbot = {
+      enable = cfg.enable;
+      environment = lib.mapAttrs (
+        _: v: if lib.isBool v then lib.boolToString v else toString v
+      ) cfg.settings;
+      script = lib.getExe cfg.package;
+      serviceConfig = {
+        User = "mixbot";
+        WorkingDirectory = "/var/lib/mixbot";
+      };
+      wantedBy = [ "multi-user.target" ];
+    };
+    users.users.mixbot = {
+      createHome = true;
+      group = "systemd";
+      home = "/var/lib/mixbot";
+      isSystemUser = true;
+    };
+  };
 
   options = {
     nur.mixbot = {
@@ -23,24 +42,12 @@ in
               example = "example.com";
               type = lib.types.str;
             };
-            MIXBOT_PORT = lib.mkOption {
-              default = 25565;
-              description = "Your Server Port";
-              example = 25000;
-              type = lib.types.int;
-            };
-            MIXBOT_ONLINE = lib.mkEnableOption "Server in Online Mode";
-            MIXBOT_USERNAME = lib.mkOption {
-              description = "Your Bot's Username";
+            MIXBOT_NAME = lib.mkOption {
+              description = "Your Bot's Name";
               example = "Bot";
               type = lib.types.str;
             };
-            MIXBOT_VIEWER_PORT = lib.mkOption {
-              default = 3007;
-              description = "Your Bot's Viewer Port";
-              example = 3008;
-              type = lib.types.int;
-            };
+            MIXBOT_ONLINE = lib.mkEnableOption "Authenticate with Microsoft";
           };
         };
       };
