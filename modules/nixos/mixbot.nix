@@ -43,6 +43,7 @@ in
               type = lib.types.str;
             };
             MIXBOT_NAME = lib.mkOption {
+              default = "MiXBot";
               description = "Your Bot's Name";
               example = "Bot";
               type = lib.types.str;
