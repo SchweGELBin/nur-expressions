@@ -71,7 +71,7 @@ in
         secretFile = lib.mkOption {
           description = ''
             File containing environment variables
-            Needs `SMOOS_API_TOKEN`, `SMOOS_DISCORD_ID`, `SMOOS_DISCORD_TOKEN`
+            Needs `SMOOS_API_TOKEN`, `SMOOS_DISCORD_TOKEN`
           '';
           example = "config.sops.secrets.smoos_env.path";
           type = lib.types.path;
@@ -90,6 +90,11 @@ in
                 description = "Your Server Port";
                 example = 1028;
                 type = lib.types.int;
+              };
+              SMOOS_DISCORD_ID = lib.mkOption {
+                description = "Your Discord User ID";
+                example = "123456789012345678";
+                type = lib.types.str;
               };
               SMOOS_DISCORD_PREFIX = lib.mkOption {
                 default = "!";

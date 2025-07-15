@@ -16,6 +16,7 @@ in
       ) cfg.settings;
       script = lib.getExe cfg.package;
       serviceConfig = {
+        EnvironmentFile = cfg.secretFile;
         User = "mixbot";
         WorkingDirectory = "/var/lib/mixbot";
       };
@@ -33,9 +34,22 @@ in
     nur.mixbot = {
       enable = lib.mkEnableOption "Enable Minecraft MiXBot";
       package = lib.mkPackageOption pkgs "mixbot" { };
+      secretFile = lib.mkOption {
+        description = ''
+          File containing environment variables
+          Needs `MIXBOT_DISCORD_TOKEN`
+        '';
+        example = "config.sops.secrets.smoos_env.path";
+        type = lib.types.path;
+      };
       settings = lib.mkOption {
         type = lib.types.submodule {
           options = {
+            MIXBOT_DISCORD_ID = lib.mkOption {
+              description = "Your Discord User ID";
+              example = "123456789012345678";
+              type = lib.types.str;
+            };
             MIXBOT_HOST = lib.mkOption {
               default = "localhost";
               description = "Your Server IP";
