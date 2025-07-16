@@ -7,8 +7,8 @@ let
   repo = fetchFromGitHub {
     owner = "SchweGELBin";
     repo = "MiXBot";
-    tag = "v0.2.1";
-    hash = "sha256-bEznsFV6HALK/BWakW3+R4EKpbBGjezn/7uM7K/Uwc8=";
+    tag = "v0.2.2";
+    hash = "sha256-3yK6mLOJb5Pe16Fzsve5VKccMnBjQhP2p5WMdjucIuo=";
   };
 in
 
