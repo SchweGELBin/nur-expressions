@@ -1,4 +1,8 @@
-{ fetchgit, pkgs }:
+{
+  fetchgit,
+  pkgs,
+  rustPlatform,
+}:
 let
   pin = import ./pin.nix;
   repo = fetchgit {
@@ -9,4 +13,4 @@ let
   };
 in
 
-pkgs.callPackage "${repo}/smoos-rs/default.nix" { }
+pkgs.callPackage "${repo}/default.nix" { rustPlatform = rustPlatform; }
