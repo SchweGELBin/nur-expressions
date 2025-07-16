@@ -13,4 +13,4 @@ let
   };
 in
 
-pkgs.callPackage "${repo}/default.nix" { rustPlatform = rustPlatform; }
+pkgs.callPackage "${repo}/smoos-bot/default.nix" { rustPlatform = rustPlatform; }
