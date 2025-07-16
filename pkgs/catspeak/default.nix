@@ -1,8 +1,4 @@
-{
-  fetchFromGitHub,
-  pkgs,
-  rustPlatform,
-}:
+{ fetchFromGitHub, pkgs }:
 let
   repo = fetchFromGitHub {
     owner = "SchweGELBin";
@@ -12,4 +8,4 @@ let
   };
 in
 
-pkgs.callPackage "${repo}/default.nix" { rustPlatform = rustPlatform; }
+pkgs.callPackage "${repo}/default.nix" { }
