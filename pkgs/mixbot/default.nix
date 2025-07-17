@@ -3,8 +3,8 @@ let
   repo = fetchFromGitHub {
     owner = "SchweGELBin";
     repo = "MiXBot";
-    tag = "v0.3.0";
-    hash = "sha256-fZHSyz4r9C1ohXNdmC5aIABrl9y7VnSjtc0PZF4NUmc=";
+    tag = "v0.3.1";
+    hash = "sha256-Fyz8E6atDwDVcH38GvZ4lelFyKHH1oG78rndkQsYr78=";
   };
 in
 
