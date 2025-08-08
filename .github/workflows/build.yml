@@ -17,18 +17,20 @@ jobs:
   build-nur:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || (github.event_name == "workflow_dispatch" && github.event.inputs.package == '')
-    uses: ./.github/workflows/cache.yml
     strategy:
-      matrix:
-        package: [catspeak, mixbot, smoos-bot, smoos-cs, website]
-    with:
-      nixpkgs-patch: false
-      package: ${{ matrix.package }}
+        matrix:
+          package: [catspeak, mixbot, smoos-bot, smoos-cs, website]
+    steps:
+    - uses: ./.github/workflows/cache.yml
+      with:
+        nixpkgs-patch: false
+        package: ${{ matrix.package }}
 
   buid-pkg:
     runs-on: ubuntu-latest
     if: github.event_name == "workflow_dispatch" && github.event.inputs.package != ''
-    uses: ./.github/workflows/cache.yml
-    with:
-      nixpkgs-patch: ${{ inputs.nixpkgs-patch }}
-      package: ${{ inputs.package }}
+    steps:
+    - uses: ./.github/workflows/cache.yml
+      with:
+        nixpkgs-patch: ${{ inputs.nixpkgs-patch }}
+        package: ${{ inputs.package }}
