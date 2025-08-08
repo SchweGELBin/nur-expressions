@@ -23,6 +23,7 @@ jobs:
     secrets: inherit
     with:
       nixpkgs-patch: false
+      nur: true
       package: ${{ matrix.package }}
 
   buid-pkg:
@@ -31,4 +32,5 @@ jobs:
     secrets: inherit
     with:
       nixpkgs-patch: ${{ inputs.nixpkgs-patch }}
+      nur: false
       package: ${{ inputs.package }}

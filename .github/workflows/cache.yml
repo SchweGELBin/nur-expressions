@@ -6,6 +6,9 @@ on:
       nixpkgs-patch:
         required: true
         type: boolean
+      nur:
+        required: true
+        type: boolean
       package:
         required: true
         type: string
@@ -35,3 +38,6 @@ jobs:
         name: schwegelbin
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: nix-build -A ${{ inputs.package }}
+      if: ${{ inputs.nur }}
+    - run: nix-shell -p ${{ inputs.package }}
+      if: ${{ !inputs.nur }}
