@@ -31,7 +31,7 @@ jobs:
     - name: Patch nixpkgs
       if: ${{ inputs.nixpkgs-patch }}
       run: |
-        nix-channel --add https://github.com/SchweGELBin/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz nixpkgs
+        nix-channel --add https://github.com/SchweGELBin/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz nixos-unstable
         nix-channel --update
     - uses: cachix/cachix-action@v14
       with:
