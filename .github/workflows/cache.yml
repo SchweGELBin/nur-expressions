@@ -25,10 +25,10 @@ jobs:
     - uses: cachix/install-nix-action@v25
       with:
         nix_path: nixpkgs=channel:nixos-unstable
-    - name: patch nixpkgs
+    - name: Patch nixpkgs
       if: ${{ inputs.nixpkgs-patch }}
       run: |
-        nix-channel --add https://github.com/SchweGELBin/nixpkgs/nixos-unstable nixpkgs
+        nix-channel --add https://github.com/SchweGELBin/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz nixpkgs
         nix-channel --update
     - uses: cachix/cachix-action@v14
       with:
