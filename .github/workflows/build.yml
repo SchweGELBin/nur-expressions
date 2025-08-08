@@ -20,6 +20,7 @@ jobs:
         matrix:
           package: [catspeak, mixbot, smoos-bot, smoos-cs, website]
     uses: ./.github/workflows/cache.yml
+    secrets: inherit
     with:
       nixpkgs-patch: false
       package: ${{ matrix.package }}
@@ -27,6 +28,7 @@ jobs:
   buid-pkg:
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.package != ''
     uses: ./.github/workflows/cache.yml
+    secrets: inherit
     with:
       nixpkgs-patch: ${{ inputs.nixpkgs-patch }}
       package: ${{ inputs.package }}

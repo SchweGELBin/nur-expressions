@@ -9,6 +9,9 @@ on:
       package:
         required: true
         type: string
+    secrets:
+      CACHIX_AUTH_TOKEN:
+        required: true
 
 
 jobs:
