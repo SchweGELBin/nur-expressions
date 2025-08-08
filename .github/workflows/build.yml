@@ -16,7 +16,7 @@ on:
 jobs:
   build-nur:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || (github.event_name == "workflow_dispatch" && github.event.inputs.package == '')
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.package == '')
     strategy:
         matrix:
           package: [catspeak, mixbot, smoos-bot, smoos-cs, website]
@@ -28,7 +28,7 @@ jobs:
 
   buid-pkg:
     runs-on: ubuntu-latest
-    if: github.event_name == "workflow_dispatch" && github.event.inputs.package != ''
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.package != ''
     steps:
     - uses: ./.github/workflows/cache.yml
       with:
