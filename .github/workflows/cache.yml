@@ -11,15 +11,14 @@ on:
 
 jobs:
   nur:
-    runs-on: ${{ matrix.os }}
     if: github.event_name == 'push'
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-24.04-arm]
         package: [catspeak, mixbot, smoos-bot, smoos-cs, website]
     steps:
     - uses: actions/checkout@v4
-    - name: Checkout nixpkgs
     - uses: cachix/install-nix-action@v25
       with:
         nix_path: nixpkgs=channel:nixos-unstable
@@ -30,13 +29,13 @@ jobs:
     - run: nix-build -A ${{ matrix.package }}
 
   package:
-    runs-on: ${{ matrix.os }}
     if: github.event_name == 'workflow_dispatch'
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-24.04-arm]
     steps:
-    - name: Checkout nixpkgs
+    - uses: actions/checkout@v4
       with:
         repository: SchweGELBin/nixpkgs
         ref: nixos-unstable
@@ -47,4 +46,4 @@ jobs:
       with:
         name: schwegelbin
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-      run: nix-build -A ${{ inputs.package }}
+    - run: nix-build -A ${{ inputs.package }}
