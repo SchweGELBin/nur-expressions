@@ -3,6 +3,7 @@
 }:
 
 {
+  bible4tui = pkgs.callPackage ./pkgs/bible4tui { };
   catspeak = pkgs.callPackage ./pkgs/catspeak { };
   mixbot = pkgs.callPackage ./pkgs/mixbot { };
   smoos-bot = pkgs.callPackage ./pkgs/smoos/bot.nix { };
