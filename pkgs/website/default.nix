@@ -3,8 +3,8 @@ let
   repo = fetchFromGitHub {
     owner = "SchweGELBin";
     repo = "website";
-    tag = "v1.4.1";
-    hash = "sha256-x/TpP01ziNr+uZwlk9abE+A18kccXuBQPGT9zBbDQzk=";
+    tag = "v1.4.2";
+    hash = "sha256-hbQtKuE7H1DW+TlO5k+d3wDDzhoEIWIalGo1qqwH7HM=";
   };
 in
 
