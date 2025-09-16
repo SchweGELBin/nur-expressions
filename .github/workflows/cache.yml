@@ -46,4 +46,4 @@ jobs:
       with:
         name: schwegelbin
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: NIXPKGS_ALLOW_INSECURE=1 nix-build -A ${{ inputs.package }}
+    - run: nix-build -A ${{ inputs.package }}
