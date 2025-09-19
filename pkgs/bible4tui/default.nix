@@ -3,8 +3,8 @@ let
   repo = fetchFromGitHub {
     owner = "SchweGELBin";
     repo = "Bible4TUI";
-    tag = "v0.1.0";
-    hash = "sha256-867qzA9rk0u9hM8zqPmPcf1/WsL8JRxV1iXMPv0eG8I=";
+    tag = "v0.2.0";
+    hash = "sha256-Z2xf1BbJsHoxrnUJMghzQG8voBgDLwDL9p0AWOAnaSM=";
   };
 in
 
