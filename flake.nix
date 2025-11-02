@@ -15,6 +15,7 @@
     {
       homeModules = import ./modules/home;
       nixosModules = import ./modules/nixos;
+      overlays.default = import ./overlay.nix;
       packages = eachSystem (system: nixpkgs.legacyPackages.${system}.callPackage ./default.nix { });
     };
 }
