@@ -14,9 +14,9 @@ in
     systemd.services = {
       smoos-bot = {
         enable = cfg.bot.enable;
-        environment = lib.mapAttrs (
-          _: v: if lib.isBool v then lib.boolToString v else toString v
-        ) cfg.bot.settings;
+        environment = lib.concatMapAttrs (n: v: {
+          ${"SMOOS_" + lib.toUpper n} = if lib.isBool v then lib.boolToString v else toString v;
+        }) cfg.bot.settings;
         script = lib.getExe cfg.bot.package;
         serviceConfig = {
           EnvironmentFile = cfg.bot.secretFile;
@@ -80,24 +80,24 @@ in
           description = "Configuration options for the Server Bot";
           type = lib.types.submodule {
             options = {
-              SMOOS_API_HOST = lib.mkOption {
+              api_host = lib.mkOption {
                 default = "localhost";
                 description = "Your Server IP";
                 example = "example.com";
                 type = lib.types.str;
               };
-              SMOOS_API_PORT = lib.mkOption {
+              api_port = lib.mkOption {
                 default = 1027;
                 description = "Your Server Port";
                 example = 1028;
                 type = lib.types.int;
               };
-              SMOOS_DISCORD_ID = lib.mkOption {
+              discord_id = lib.mkOption {
                 description = "Your Discord User ID";
                 example = "123456789012345678";
                 type = lib.types.str;
               };
-              SMOOS_DISCORD_PREFIX = lib.mkOption {
+              discord_prefix = lib.mkOption {
                 default = "!";
                 description = "Your Discord Bot Command Prefix";
                 example = ".";

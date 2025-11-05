@@ -11,9 +11,9 @@ in
   config = lib.mkIf cfg.enable {
     systemd.services.mixbot = {
       enable = cfg.enable;
-      environment = lib.mapAttrs (
-        _: v: if lib.isBool v then lib.boolToString v else toString v
-      ) cfg.settings;
+      environment = lib.concatMapAttrs (n: v: {
+        ${"MIXBOT_" + lib.toUpper n} = if lib.isBool v then lib.boolToString v else toString v;
+      }) cfg.settings;
       script = lib.getExe cfg.package;
       serviceConfig = {
         EnvironmentFile = cfg.secretFile;
@@ -46,23 +46,23 @@ in
         description = "Configuration options for the Minecraft Bot";
         type = lib.types.submodule {
           options = {
-            MIXBOT_DISCORD_ID = lib.mkOption {
+            discord_id = lib.mkOption {
               description = "Your Discord User ID";
               example = "123456789012345678";
               type = lib.types.str;
             };
-            MIXBOT_HOST = lib.mkOption {
+            host = lib.mkOption {
               default = "localhost";
               description = "Your Server IP";
               type = lib.types.str;
             };
-            MIXBOT_NAME = lib.mkOption {
+            name = lib.mkOption {
               default = "MiXBot";
               description = "Your Bot's Name";
               example = "Bot";
               type = lib.types.str;
             };
-            MIXBOT_ONLINE = lib.mkEnableOption "Authenticate with Microsoft";
+            online = lib.mkEnableOption "Authenticate with Microsoft";
           };
         };
       };
