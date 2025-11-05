@@ -39,10 +39,11 @@ in
           File containing environment variables
           Needs `MIXBOT_DISCORD_TOKEN`
         '';
-        example = "config.sops.secrets.smoos_env.path";
+        example = "config.sops.secrets.mixbot_env.path";
         type = lib.types.path;
       };
       settings = lib.mkOption {
+        description = "Configuration options for the Minecraft Bot";
         type = lib.types.submodule {
           options = {
             MIXBOT_DISCORD_ID = lib.mkOption {
@@ -53,7 +54,6 @@ in
             MIXBOT_HOST = lib.mkOption {
               default = "localhost";
               description = "Your Server IP";
-              example = "example.com";
               type = lib.types.str;
             };
             MIXBOT_NAME = lib.mkOption {

@@ -77,6 +77,7 @@ in
           type = lib.types.path;
         };
         settings = lib.mkOption {
+          description = "Configuration options for the Server Bot";
           type = lib.types.submodule {
             options = {
               SMOOS_API_HOST = lib.mkOption {
@@ -118,12 +119,12 @@ in
           type = lib.types.path;
         };
         settings = lib.mkOption {
+          description = "Configuration options for the C# Server";
           type = lib.types.submodule {
             options = {
               address = lib.mkOption {
                 default = "0.0.0.0";
                 description = "Your Server Adress";
-                example = "example.com";
                 type = lib.types.str;
               };
               force = lib.mkEnableOption "Replace existing settings";
