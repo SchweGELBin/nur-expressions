@@ -1,7 +1,7 @@
 { fetchgit, pkgs }:
 let
   pin = import ./pin.nix;
-  repo = fetchgit {
+  src = fetchgit {
     url = "https://github.com/SchweGELBin/smoos";
     fetchSubmodules = true;
     tag = pin.version;
@@ -9,4 +9,4 @@ let
   };
 in
 
-pkgs.callPackage "${repo}/smoos-rs/default.nix" { }
+pkgs.callPackage "${src}/smoos-rs" { }

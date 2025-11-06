@@ -1,7 +1,7 @@
 { fetchFromGitHub, pkgs }:
 let
   pin = import ./pin.nix;
-  repo = fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "SchweGELBin";
     repo = "smoos";
     tag = pin.version;
@@ -9,4 +9,4 @@ let
   };
 in
 
-pkgs.callPackage "${repo}/smoos-bot/default.nix" { }
+pkgs.callPackage "${src}/smoos-bot" { }

@@ -1,6 +1,6 @@
 { fetchFromGitHub, pkgs }:
 let
-  repo = fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "SchweGELBin";
     repo = "MiXBot";
     tag = "v0.3.1";
@@ -8,4 +8,4 @@ let
   };
 in
 
-pkgs.callPackage "${repo}/default.nix" { }
+pkgs.callPackage src { }
