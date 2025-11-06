@@ -1,4 +1,9 @@
 name: "Cache"
+run-name: >-
+  ${{ github.event_name == 'workflow_dispatch' && format('Caching {0}', inputs.package)
+  || github.event_name == 'push' && format('Caching nur pkgs')
+  || format('Caching')
+  }}
 
 on:
   push:
