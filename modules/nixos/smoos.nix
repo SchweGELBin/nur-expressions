@@ -52,7 +52,7 @@ in
           }) cfg.cs.bot.settings
           // {
             API_HOST = cfg.cs.settings.address;
-            API_PORT = cfg.cs.settings.port;
+            API_PORT = toString cfg.cs.settings.port;
           };
         script = lib.getExe cfg.cs.bot.package;
         serviceConfig = {
@@ -97,7 +97,7 @@ in
           }) cfg.rs.bot.settings
           // {
             API_HOST = cfg.rs.settings.address;
-            API_PORT = cfg.rs.settings.port;
+            API_PORT = toString cfg.rs.settings.port;
           };
         script = lib.getExe cfg.rs.bot.package;
         serviceConfig = {
