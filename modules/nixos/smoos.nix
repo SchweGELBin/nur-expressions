@@ -173,56 +173,56 @@ in
             };
           };
         };
-        rs = {
-          enable = lib.mkEnableOption "Enable Super Mario Odyssey: Online Server - Rust";
-          package = lib.mkPackageOption pkgs "smoos-rs" { };
-          bot = {
-            enable = lib.mkEnableOption "Enable Super Mario Odyssey: Online Server - Bot";
-            package = lib.mkPackageOption pkgs "smoos-bot" { };
-            settings = lib.mkOption {
-              description = "Configuration options for the Server Bot";
-              type = lib.types.submodule {
-                options = {
-                  discord_id = lib.mkOption {
-                    description = "Your Discord User ID";
-                    example = "123456789012345678";
-                    type = lib.types.str;
-                  };
-                  discord_prefix = lib.mkOption {
-                    default = "!";
-                    description = "Your Discord Bot Command Prefix";
-                    example = ".";
-                    type = lib.types.str;
-                  };
+      };
+      rs = {
+        enable = lib.mkEnableOption "Enable Super Mario Odyssey: Online Server - Rust";
+        package = lib.mkPackageOption pkgs "smoos-rs" { };
+        bot = {
+          enable = lib.mkEnableOption "Enable Super Mario Odyssey: Online Server - Bot";
+          package = lib.mkPackageOption pkgs "smoos-bot" { };
+          settings = lib.mkOption {
+            description = "Configuration options for the Server Bot";
+            type = lib.types.submodule {
+              options = {
+                discord_id = lib.mkOption {
+                  description = "Your Discord User ID";
+                  example = "123456789012345678";
+                  type = lib.types.str;
+                };
+                discord_prefix = lib.mkOption {
+                  default = "!";
+                  description = "Your Discord Bot Command Prefix";
+                  example = ".";
+                  type = lib.types.str;
                 };
               };
             };
           };
-          secretFile = lib.mkOption {
-            description = ''
-              File containing environment variables
-              Needs `SMOOS_API_TOKEN`, `SMOOS_API_TOKEN_PUB` if `nur.smoos.cs.settings.jsonapi = true`
-            '';
-            example = "config.sops.secrets.smoos_env.path";
-            type = lib.types.path;
-          };
-          settings = lib.mkOption {
-            description = "Configuration options for the Rust Server";
-            type = lib.types.submodule {
-              options = {
-                address = lib.mkOption {
-                  default = "0.0.0.0";
-                  description = "Your Server Adress";
-                  type = lib.types.str;
-                };
-                force = lib.mkEnableOption "Replace existing settings";
-                jsonapi = lib.mkEnableOption "Enable the JsonApi, necessary if you want to use smoos-bot";
-                port = lib.mkOption {
-                  default = 1027;
-                  description = "Your Server Port";
-                  example = 1028;
-                  type = lib.types.int;
-                };
+        };
+        secretFile = lib.mkOption {
+          description = ''
+            File containing environment variables
+            Needs `SMOOS_API_TOKEN`, `SMOOS_API_TOKEN_PUB` if `nur.smoos.cs.settings.jsonapi = true`
+          '';
+          example = "config.sops.secrets.smoos_env.path";
+          type = lib.types.path;
+        };
+        settings = lib.mkOption {
+          description = "Configuration options for the Rust Server";
+          type = lib.types.submodule {
+            options = {
+              address = lib.mkOption {
+                default = "0.0.0.0";
+                description = "Your Server Adress";
+                type = lib.types.str;
+              };
+              force = lib.mkEnableOption "Replace existing settings";
+              jsonapi = lib.mkEnableOption "Enable the JsonApi, necessary if you want to use smoos-bot";
+              port = lib.mkOption {
+                default = 1027;
+                description = "Your Server Port";
+                example = 1028;
+                type = lib.types.int;
               };
             };
           };
