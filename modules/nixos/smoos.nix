@@ -20,7 +20,11 @@ in
       smoos-cs = {
         enable = cfg.cs.enable;
         preStart =
-          lib.optionalString cfg.cs.settings.force ''
+          ''
+            if [ ! -d cs ]; then mkdir cs; fi
+            cd cs
+          ''
+          + lib.optionalString cfg.cs.settings.force ''
             if [ -f ./settings.json ]; then rm ./settings.json; fi
           ''
           + ''
@@ -40,7 +44,7 @@ in
         serviceConfig = {
           EnvironmentFile = cfg.cs.secretFile;
           User = "smoos";
-          WorkingDirectory = "/var/lib/smoos/cs";
+          WorkingDirectory = "/var/lib/smoos";
         };
         wantedBy = [ "multi-user.target" ];
       };
@@ -58,14 +62,18 @@ in
         serviceConfig = {
           EnvironmentFile = cfg.cs.secretFile;
           User = "smoos";
-          WorkingDirectory = "/var/lib/smoos/cs";
+          WorkingDirectory = "/var/lib/smoos";
         };
         wantedBy = [ "multi-user.target" ];
       };
       smoos-rs = {
         enable = cfg.rs.enable;
         preStart =
-          lib.optionalString cfg.rs.settings.force ''
+          ''
+            if [ ! -d rs ]; then mkdir rs; fi
+            cd rs
+          ''
+          + lib.optionalString cfg.rs.settings.force ''
             if [ -f ./settings.json ]; then rm ./settings.json; fi
           ''
           + ''
@@ -85,7 +93,7 @@ in
         serviceConfig = {
           EnvironmentFile = cfg.rs.secretFile;
           User = "smoos";
-          WorkingDirectory = "/var/lib/smoos/rs";
+          WorkingDirectory = "/var/lib/smoos";
         };
         wantedBy = [ "multi-user.target" ];
       };
@@ -103,7 +111,7 @@ in
         serviceConfig = {
           EnvironmentFile = cfg.rs.secretFile;
           User = "smoos";
-          WorkingDirectory = "/var/lib/smoos/rs";
+          WorkingDirectory = "/var/lib/smoos";
         };
         wantedBy = [ "multi-user.target" ];
       };
