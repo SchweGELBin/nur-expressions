@@ -20,11 +20,7 @@ in
       smoos-cs = {
         enable = cfg.cs.enable;
         preStart =
-          ''
-            if [ ! -d cs ]; then mkdir cs; fi
-            cd cs
-          ''
-          + lib.optionalString cfg.cs.settings.force ''
+          lib.optionalString cfg.cs.settings.force ''
             if [ -f ./settings.json ]; then rm ./settings.json; fi
           ''
           + ''
@@ -43,8 +39,8 @@ in
         script = "${cfg.cs.package}/bin/Server";
         serviceConfig = {
           EnvironmentFile = cfg.cs.secretFile;
-          User = "smoos";
-          WorkingDirectory = "/var/lib/smoos";
+          User = "smoos-cs";
+          WorkingDirectory = "/var/lib/smoos-cs";
         };
         wantedBy = [ "multi-user.target" ];
       };
@@ -61,19 +57,15 @@ in
         script = lib.getExe cfg.cs.bot.package;
         serviceConfig = {
           EnvironmentFile = cfg.cs.secretFile;
-          User = "smoos";
-          WorkingDirectory = "/var/lib/smoos";
+          User = "smoos-cs";
+          WorkingDirectory = "/var/lib/smoos-cs";
         };
         wantedBy = [ "multi-user.target" ];
       };
       smoos-rs = {
         enable = cfg.rs.enable;
         preStart =
-          ''
-            if [ ! -d rs ]; then mkdir rs; fi
-            cd rs
-          ''
-          + lib.optionalString cfg.rs.settings.force ''
+          lib.optionalString cfg.rs.settings.force ''
             if [ -f ./settings.json ]; then rm ./settings.json; fi
           ''
           + ''
@@ -92,8 +84,8 @@ in
         script = "${cfg.rs.package}/bin/smo-rs";
         serviceConfig = {
           EnvironmentFile = cfg.rs.secretFile;
-          User = "smoos";
-          WorkingDirectory = "/var/lib/smoos";
+          User = "smoos-rs";
+          WorkingDirectory = "/var/lib/smoos-rs";
         };
         wantedBy = [ "multi-user.target" ];
       };
@@ -110,18 +102,26 @@ in
         script = lib.getExe cfg.rs.bot.package;
         serviceConfig = {
           EnvironmentFile = cfg.rs.secretFile;
-          User = "smoos";
-          WorkingDirectory = "/var/lib/smoos";
+          User = "smoos-rs";
+          WorkingDirectory = "/var/lib/smoos-rs";
         };
         wantedBy = [ "multi-user.target" ];
       };
     };
 
-    users.users.smoos = {
-      createHome = true;
-      group = "systemd";
-      home = "/var/lib/smoos";
-      isSystemUser = true;
+    users.users = {
+      smoos-cs = {
+        createHome = true;
+        group = "systemd";
+        home = "/var/lib/smoos-cs";
+        isSystemUser = true;
+      };
+      smoos-rs = {
+        createHome = true;
+        group = "systemd";
+        home = "/var/lib/smoos-rs";
+        isSystemUser = true;
+      };
     };
   };
 
