@@ -51,8 +51,8 @@ in
             ${"SMOOS_" + lib.toUpper n} = if lib.isBool v then lib.boolToString v else toString v;
           }) cfg.cs.bot.settings
           // {
-            API_HOST = cfg.cs.settings.address;
-            API_PORT = toString cfg.cs.settings.port;
+            SMOOS_API_HOST = cfg.cs.settings.address;
+            SMOOS_API_PORT = toString cfg.cs.settings.port;
           };
         script = lib.getExe cfg.cs.bot.package;
         serviceConfig = {
@@ -96,8 +96,8 @@ in
             ${"SMOOS_" + lib.toUpper n} = if lib.isBool v then lib.boolToString v else toString v;
           }) cfg.rs.bot.settings
           // {
-            API_HOST = cfg.rs.settings.address;
-            API_PORT = toString cfg.rs.settings.port;
+            SMOOS_API_HOST = cfg.rs.settings.address;
+            SMOOS_API_PORT = toString cfg.rs.settings.port;
           };
         script = lib.getExe cfg.rs.bot.package;
         serviceConfig = {
