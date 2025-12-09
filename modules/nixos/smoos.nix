@@ -29,7 +29,7 @@ in
               chmod +w ./settings.json
             fi
             sed -i -e 's/"Address":.*,/"Address": "${cfg.cs.settings.address}",/' settings.json
-            sed -i -e 's/"Port":.*,/"Port": "${toString cfg.cs.settings.port}",/' settings.json
+            sed -i -e 's/"Port":.*,/"Port": ${toString cfg.cs.settings.port},/' settings.json
           ''
           + lib.optionalString cfg.cs.settings.jsonapi ''
             sed -i '/JsonApi/{n;s/false/true/}' ./settings.json
@@ -74,7 +74,7 @@ in
               chmod +w ./settings.json
             fi
             sed -i -e 's/"Address":.*,/"Address": "${cfg.rs.settings.address}",/' settings.json
-            sed -i -e 's/"Port":.*,/"Port": "${toString cfg.rs.settings.port}",/' settings.json
+            sed -i -e 's/"Port":.*,/"Port": ${toString cfg.rs.settings.port},/' settings.json
           ''
           + lib.optionalString cfg.rs.settings.jsonapi ''
             sed -i '/JsonApi/{n;s/false/true/}' ./settings.json
