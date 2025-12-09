@@ -176,7 +176,7 @@ in
                 default = 1027;
                 description = "Your Server Port";
                 example = 1028;
-                type = lib.types.int;
+                type = lib.types.port;
               };
             };
           };
@@ -230,7 +230,7 @@ in
                 default = 1027;
                 description = "Your Server Port";
                 example = 1028;
-                type = lib.types.int;
+                type = lib.types.port;
               };
             };
           };
