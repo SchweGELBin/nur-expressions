@@ -36,7 +36,7 @@ in
             sed -i -e "s/\"SECRET_TOKEN_1\"/\"$SMOOS_API_TOKEN_PUB\"/g" ./settings.json
             sed -i -e "s/\"SECRET_TOKEN_2\"/\"$SMOOS_API_TOKEN\"/g" ./settings.json
           '';
-        script = "${cfg.cs.package}/bin/Server";
+        script = lib.getExe cfg.cs.package;
         serviceConfig = {
           EnvironmentFile = cfg.cs.secretFile;
           User = "smoos-cs";
@@ -81,7 +81,7 @@ in
             sed -i -e "s/\"SECRET_TOKEN_1\"/\"$SMOOS_API_TOKEN_PUB\"/g" ./settings.json
             sed -i -e "s/\"SECRET_TOKEN_2\"/\"$SMOOS_API_TOKEN\"/g" ./settings.json
           '';
-        script = "${cfg.rs.package}/bin/smo-rs";
+        script = lib.getExe cfg.rs.package;
         serviceConfig = {
           EnvironmentFile = cfg.rs.secretFile;
           User = "smoos-rs";
