@@ -45,7 +45,7 @@ in
         wantedBy = [ "multi-user.target" ];
       };
       smoos-cs-bot = {
-        enable = cfg.cs.bot.enable;
+        enable = cfg.cs.enable && cfg.cs.bot.enable;
         environment =
           lib.concatMapAttrs (n: v: {
             ${"SMOOS_" + lib.toUpper n} = if lib.isBool v then lib.boolToString v else toString v;
@@ -90,7 +90,7 @@ in
         wantedBy = [ "multi-user.target" ];
       };
       smoos-rs-bot = {
-        enable = cfg.rs.bot.enable;
+        enable = cfg.rs.enable && cfg.rs.bot.enable;
         environment =
           lib.concatMapAttrs (n: v: {
             ${"SMOOS_" + lib.toUpper n} = if lib.isBool v then lib.boolToString v else toString v;
