@@ -1,5 +1,5 @@
 {
-  version = "v1.3.2";
-  hash = "sha256-C97CnO6bZ9JPYPpCvKyl7b/soVG9NnUESM0+rpRqREs=";
-  subHash = "sha256-KEVNERp/1h4+8znm2fH7ihUEx2HuqUSNgepEdNAgpNg=";
+  version = "v1.3.3";
+  hash = "sha256-0Nz5z1ThTPG0vxPXpx3wv7TL9EsNDbaFDa97Rseq9O4=";
+  subHash = "sha256-yFEwPfekKncXTF3+d2QE/3W/W2z7PgTmxCIuuRySfgo=";
 }
