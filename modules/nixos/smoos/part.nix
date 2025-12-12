@@ -26,7 +26,7 @@ in
               Port = cfg.settings.port;
               JsonApi = {
                 Enabled = cfg.settings.jsonapi.enable;
-                Port = lib.mkIf cfg.settings.jsonapi.port cfg.settings.jsonapi.port;
+                Port = lib.mkIf (cfg.settings.jsonapi.port != null) cfg.settings.jsonapi.port;
               };
             };
           in
@@ -60,7 +60,10 @@ in
           // {
             SMOOS_API_HOST = cfg.settings.address;
             SMOOS_API_PORT =
-              if cfg.settings.jsonapi.port then toString cfg.settings.jsonapi.port else cfg.settings.port;
+              if (cfg.settings.jsonapi.port != null) then
+                toString cfg.settings.jsonapi.port
+              else
+                cfg.settings.port;
           };
         script = lib.getExe cfg.bot.package;
         serviceConfig = {
