@@ -21,14 +21,16 @@ in
         enable = cfg.enable;
         preStart =
           let
-            settings = import "${cfg.package}/settings.nix" // {
-              Address = cfg.settings.address;
-              Port = cfg.settings.port;
-              JsonApi = {
-                Enabled = cfg.settings.jsonapi.enable;
-                Port = lib.mkIf (cfg.settings.jsonapi.port != null) cfg.settings.jsonapi.port;
+            settings =
+              import "${cfg.package}/settings.nix"
+              // {
+                Address = cfg.settings.address;
+                Port = cfg.settings.port;
+                JsonApi.Enabled = cfg.settings.jsonapi.enable;
+              }
+              // lib.optionalAttrs (cfg.settings.port != null) {
+                JsonApi.Port = cfg.settings.jsonapi.port;
               };
-            };
           in
           lib.optionalString cfg.settings.force ''
             if [ -f ./settings.json ]; then rm ./settings.json; fi
