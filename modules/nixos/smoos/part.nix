@@ -21,15 +21,20 @@ in
         enable = cfg.enable;
         preStart =
           let
+            defaultSettings = import "${cfg.package}/settings.nix";
             settings =
-              import "${cfg.package}/settings.nix"
+              defaultSettings
               // {
                 Address = cfg.settings.address;
                 Port = cfg.settings.port;
-                JsonApi.Enabled = cfg.settings.jsonapi.enable;
+                JsonApi = defaultSettings // {
+                  Enabled = cfg.settings.jsonapi.enable;
+                };
               }
               // lib.optionalAttrs (cfg.settings.port != null) {
-                JsonApi.Port = cfg.settings.jsonapi.port;
+                JsonApi = defaultSettings // {
+                  Port = cfg.settings.jsonapi.port;
+                };
               };
           in
           lib.optionalString cfg.settings.force ''
