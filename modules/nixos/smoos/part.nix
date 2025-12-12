@@ -22,7 +22,7 @@ in
         preStart =
           let
             default = import "${cfg.package}/settings.nix";
-            settings = builtins.toJSON default // {
+            settings = lib.strings.toJSON default // {
               Address = cfg.settings.address;
               Port = cfg.settings.port;
               JsonApi = {
@@ -36,7 +36,7 @@ in
           ''
           + ''
             if [ ! -f ./settings.json ]; then
-              cp ${settings} ./settings.json
+              echo ${settings} > ./settings.json
               chmod +w ./settings.json
             fi
           ''
