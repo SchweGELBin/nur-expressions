@@ -1,8 +1,8 @@
-{ lib, ... }:
+args@{ lib, ... }:
 {
   imports = [
-    (import ./part.nix { part = "cs"; })
-    (import ./part.nix { part = "rs"; })
+    (import ./part.nix (args // { part = "cs"; }))
+    (import ./part.nix (args // { part = "rs"; }))
   ];
 
   options = {
