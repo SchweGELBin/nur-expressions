@@ -3,6 +3,6 @@
     ./cache.nix
     ./mixbot.nix
     ./overlay.nix
-    ./smoos.nix
+    ./smoos
   ];
 }
