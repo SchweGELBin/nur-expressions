@@ -128,9 +128,7 @@ in
             description = "JsonApi options";
             type = lib.types.submodule {
               options = {
-                enable = lib.mkEnableOption "Enable the JsonApi" // {
-                  default = cfg.bot.enable;
-                };
+                enable = lib.mkEnableOption "Enable the JsonApi" // lib.mkOption { default = cfg.bot.enable; };
                 port = lib.mkOption {
                   default = null;
                   description = "Your JsonApi Port";
