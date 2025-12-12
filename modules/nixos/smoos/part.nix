@@ -27,12 +27,12 @@ in
               // {
                 Address = cfg.settings.address;
                 Port = cfg.settings.port;
-                JsonApi = defaultSettings // {
+                JsonApi = defaultSettings.JsonApi // {
                   Enabled = cfg.settings.jsonapi.enable;
                 };
               }
               // lib.optionalAttrs (cfg.settings.port != null) {
-                JsonApi = defaultSettings // {
+                JsonApi = defaultSettings.JsonApi // {
                   Port = cfg.settings.jsonapi.port;
                 };
               };
