@@ -35,7 +35,7 @@ in
           ''
           + ''
             if [ ! -f ./settings.json ]; then
-              echo ${lib.strings.toJSON settings} > ./settings.json
+              echo '${lib.strings.toJSON settings}' | ${lib.getExe pkgs.jq} > ./settings.json
               chmod +w ./settings.json
             fi
           ''
