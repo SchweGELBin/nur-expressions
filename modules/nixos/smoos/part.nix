@@ -10,86 +10,88 @@ let
   name = "smoos-${part}";
 in
 {
-  config = lib.mkIf enable {
-    networking.firewall = {
-      allowedTCPPorts = lib.optionals cfg.enable [ cfg.settings.port ];
-      allowedUDPPorts = lib.optionals cfg.enable [ cfg.settings.port ];
-    };
-
-    systemd.services = {
-      ${name} = {
-        enable = cfg.enable;
-        preStart =
-          let
-            defaultSettings = import "${cfg.package}/settings.nix";
-            settings =
-              defaultSettings
-              // {
-                Address = cfg.settings.address;
-                Port = cfg.settings.port;
-                JsonApi = defaultSettings.JsonApi // {
-                  Enabled = cfg.settings.jsonapi.enable;
-                };
-              }
-              // lib.optionalAttrs (cfg.settings.port != null) {
-                JsonApi = defaultSettings.JsonApi // {
-                  Port = cfg.settings.jsonapi.port;
-                };
-              };
-          in
-          lib.optionalString cfg.settings.force ''
-            if [ -f ./settings.json ]; then rm ./settings.json; fi
-          ''
-          + ''
-            if [ ! -f ./settings.json ]; then
-              echo '${lib.strings.toJSON settings}' | ${lib.getExe pkgs.jq} > ./settings.json
-              chmod +w ./settings.json
-            fi
-          ''
-          + lib.optionalString cfg.settings.jsonapi.enable ''
-            sed -i "s/\"SECRET_TOKEN_1\"/\"$SMOOS_API_TOKEN_PUB\"/g" ./settings.json
-            sed -ie "s/\"SECRET_TOKEN_2\"/\"$SMOOS_API_TOKEN\"/g" ./settings.json
-          '';
-        script = lib.getExe cfg.package;
-        serviceConfig = {
-          EnvironmentFile = cfg.secretFile;
-          User = name;
-          WorkingDirectory = "/var/lib/${name}";
-        };
-        wantedBy = [ "multi-user.target" ];
+  config =
+    lib.mkIf enable {
+      networking.firewall = {
+        allowedTCPPorts = lib.optionals cfg.enable [ cfg.settings.port ];
+        allowedUDPPorts = lib.optionals cfg.enable [ cfg.settings.port ];
       };
-      "${name}-bot" = {
-        enable = cfg.enable && cfg.bot.enable;
-        environment =
-          lib.concatMapAttrs (n: v: {
-            ${"SMOOS_" + lib.toUpper n} = if lib.isBool v then lib.boolToString v else toString v;
-          }) cfg.bot.settings
-          // {
-            SMOOS_API_HOST = cfg.settings.address;
-            SMOOS_API_PORT =
-              if (cfg.settings.jsonapi.port != null) then
-                toString cfg.settings.jsonapi.port
-              else
-                toString cfg.settings.port;
+
+      systemd.services = {
+        ${name} = {
+          enable = cfg.enable;
+          preStart =
+            let
+              defaultSettings = import "${cfg.package}/settings.nix";
+              settings =
+                defaultSettings
+                // {
+                  Address = cfg.settings.address;
+                  Port = cfg.settings.port;
+                  JsonApi = defaultSettings.JsonApi // {
+                    Enabled = cfg.settings.jsonapi.enable;
+                  };
+                }
+                // lib.optionalAttrs (cfg.settings.port != null) {
+                  JsonApi = defaultSettings.JsonApi // {
+                    Port = cfg.settings.jsonapi.port;
+                  };
+                };
+            in
+            lib.optionalString cfg.settings.force ''
+              if [ -f ./settings.json ]; then rm ./settings.json; fi
+            ''
+            + ''
+              if [ ! -f ./settings.json ]; then
+                echo '${lib.strings.toJSON settings}' | ${lib.getExe pkgs.jq} > ./settings.json
+                chmod +w ./settings.json
+              fi
+            ''
+            + lib.optionalString cfg.settings.jsonapi.enable ''
+              sed -i "s/\"SECRET_TOKEN_1\"/\"$SMOOS_API_TOKEN_PUB\"/g" ./settings.json
+              sed -ie "s/\"SECRET_TOKEN_2\"/\"$SMOOS_API_TOKEN\"/g" ./settings.json
+            '';
+          script = lib.getExe cfg.package;
+          serviceConfig = {
+            EnvironmentFile = cfg.secretFile;
+            User = name;
+            WorkingDirectory = "/var/lib/${name}";
           };
-        script = lib.getExe cfg.bot.package;
-        serviceConfig = {
-          EnvironmentFile = cfg.secretFile;
-          User = name;
-          WorkingDirectory = "/var/lib/${name}";
+          wantedBy = [ "multi-user.target" ];
         };
-        wantedBy = [ "multi-user.target" ];
-        wants = [ "${name}.service" ];
+        "${name}-bot" = {
+          enable = cfg.enable && cfg.bot.enable;
+          environment =
+            lib.concatMapAttrs (n: v: {
+              ${"SMOOS_" + lib.toUpper n} = if lib.isBool v then lib.boolToString v else toString v;
+            }) cfg.bot.settings
+            // {
+              SMOOS_API_HOST = cfg.settings.address;
+              SMOOS_API_PORT =
+                if (cfg.settings.jsonapi.port != null) then
+                  toString cfg.settings.jsonapi.port
+                else
+                  toString cfg.settings.port;
+            };
+          script = lib.getExe cfg.bot.package;
+          serviceConfig = {
+            EnvironmentFile = cfg.secretFile;
+            User = name;
+            WorkingDirectory = "/var/lib/${name}";
+          };
+          wantedBy = [ "multi-user.target" ];
+          wants = [ "${name}.service" ];
+        };
+      };
+    }
+    // {
+      users.users.${name} = {
+        createHome = true;
+        group = "systemd";
+        home = "/var/lib/${name}";
+        isSystemUser = true;
       };
     };
-
-    users.users.${name} = {
-      createHome = true;
-      group = "systemd";
-      home = "/var/lib/${name}";
-      isSystemUser = true;
-    };
-  };
 
   options.nur.smoos.${part} = {
     enable = lib.mkEnableOption "Enable Super Mario Odyssey: Online Server - ${part}";
