@@ -1,8 +1,23 @@
-args@{ lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
-    (import ./part.nix (args // { part = "cs"; }))
-    (import ./part.nix (args // { part = "rs"; }))
+    (import ./part.nix {
+      inherit config;
+      inherit lib;
+      inherit pkgs;
+      part = "cs";
+    })
+    (import ./part.nix {
+      inherit config;
+      inherit lib;
+      inherit pkgs;
+      part = "rs";
+    })
   ];
 
   options = {
