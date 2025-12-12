@@ -21,8 +21,7 @@ in
         enable = cfg.enable;
         preStart =
           let
-            default = import "${cfg.package}/settings.nix";
-            settings = lib.strings.toJSON default // {
+            settings = import "${cfg.package}/settings.nix" // {
               Address = cfg.settings.address;
               Port = cfg.settings.port;
               JsonApi = {
@@ -36,7 +35,7 @@ in
           ''
           + ''
             if [ ! -f ./settings.json ]; then
-              echo ${settings} > ./settings.json
+              echo ${lib.strings.toJSON settings} > ./settings.json
               chmod +w ./settings.json
             fi
           ''
