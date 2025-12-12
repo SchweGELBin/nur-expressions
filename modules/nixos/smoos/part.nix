@@ -29,12 +29,12 @@ in
                   Address = cfg.settings.address;
                   Port = cfg.settings.port;
                   JsonApi = defaultSettings.JsonApi // {
-                    Enabled = cfg.settings.jsonapi.enable;
+                    Enabled = cfg.settings.jsonapi-enable;
                   };
                 }
                 // lib.optionalAttrs (cfg.settings.port != null) {
                   JsonApi = defaultSettings.JsonApi // {
-                    Port = cfg.settings.jsonapi.port;
+                    Port = cfg.settings.jsonapi-port;
                   };
                 };
             in
@@ -47,7 +47,7 @@ in
                 chmod +w ./settings.json
               fi
             ''
-            + lib.optionalString cfg.settings.jsonapi.enable ''
+            + lib.optionalString cfg.settings.jsonapi-enable ''
               sed -i "s/\"SECRET_TOKEN_1\"/\"$SMOOS_API_TOKEN_PUB\"/g" ./settings.json
               sed -ie "s/\"SECRET_TOKEN_2\"/\"$SMOOS_API_TOKEN\"/g" ./settings.json
             '';
@@ -68,8 +68,8 @@ in
             // {
               SMOOS_API_HOST = cfg.settings.address;
               SMOOS_API_PORT =
-                if (cfg.settings.jsonapi.port != null) then
-                  toString cfg.settings.jsonapi.port
+                if (cfg.settings.jsonapi-port != null) then
+                  toString cfg.settings.jsonapi-port
                 else
                   toString cfg.settings.port;
             };
@@ -121,7 +121,7 @@ in
     secretFile = lib.mkOption {
       description = ''
         File containing environment variables
-        Needs `SMOOS_API_TOKEN`, `SMOOS_API_TOKEN_PUB` if `nur.smoos.${part}.settings.jsonapi = true`
+        Needs `SMOOS_API_TOKEN`, `SMOOS_API_TOKEN_PUB` if `nur.smoos.${part}.settings.jsonapi-enable = true`
       '';
       example = "config.sops.secrets.smoos_env.path";
       type = lib.types.path;
@@ -136,24 +136,17 @@ in
             type = lib.types.str;
           };
           force = lib.mkEnableOption "Replace existing settings";
-          jsonapi = lib.mkOption {
-            description = "JsonApi options";
-            type = lib.types.submodule {
-              options = {
-                enable = lib.mkOption {
-                  default = cfg.bot.enable;
-                  description = "Enable the JsonApi";
-                  example = true;
-                  type = lib.types.bool;
-                };
-                port = lib.mkOption {
-                  default = null;
-                  description = "Your JsonApi Port";
-                  example = 1128;
-                  type = with lib.types; nullOr port;
-                };
-              };
-            };
+          jsonapi-enable = lib.mkOption {
+            default = cfg.bot.enable;
+            description = "Enable the JsonApi";
+            example = true;
+            type = lib.types.bool;
+          };
+          jsonapi-port = lib.mkOption {
+            default = null;
+            description = "Your JsonApi Port";
+            example = 1128;
+            type = with lib.types; nullOr port;
           };
           port = lib.mkOption {
             default = 1027;
