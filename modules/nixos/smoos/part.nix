@@ -63,7 +63,7 @@ in
               if (cfg.settings.jsonapi.port != null) then
                 toString cfg.settings.jsonapi.port
               else
-                cfg.settings.port;
+                toString cfg.settings.port;
           };
         script = lib.getExe cfg.bot.package;
         serviceConfig = {
