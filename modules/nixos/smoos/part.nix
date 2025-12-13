@@ -31,8 +31,9 @@ in
                   Enabled = cfg.settings.jsonapi-enable;
                 };
               }
-              // lib.optionalAttrs (cfg.settings.port != null) {
+              // lib.optionalAttrs (cfg.settings.jsonapi-port != null) {
                 JsonApi = defaultSettings.JsonApi // {
+                  Enabled = cfg.settings.jsonapi-enable;
                   Port = cfg.settings.jsonapi-port;
                 };
               };
