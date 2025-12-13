@@ -10,19 +10,15 @@ let
 in
 {
   config = lib.mkIf (config.nur.smoos.enable && cfg.enable) {
-    networking.firewall =
-      let
-        ports = [
-          cfg.settings.port
-        ]
-        ++ lib.optional (
-          cfg.settings.jsonapi-enable && cfg.settings.jsonapi-port != null
-        ) cfg.settings.jsonapi-port;
-      in
-      {
-        allowedTCPPorts = ports;
-        allowedUDPPorts = ports;
-      };
+    networking.firewall = {
+      allowedTCPPorts = [
+        cfg.settings.port
+      ]
+      ++ lib.optional (
+        cfg.settings.jsonapi-enable && cfg.settings.jsonapi-port != null
+      ) cfg.settings.jsonapi-port;
+      allowedUDPPorts = [ cfg.settings.port ];
+    };
 
     systemd.services = {
       ${name} = {
