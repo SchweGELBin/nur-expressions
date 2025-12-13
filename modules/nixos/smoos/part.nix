@@ -6,11 +6,10 @@
 }:
 let
   cfg = config.nur.smoos.${part};
-  enable = config.nur.smoos.enable && cfg.enable;
   name = "smoos-${part}";
 in
 {
-  config = lib.mkIf enable {
+  config = lib.mkIf (config.nur.smoos.enable && cfg.enable) {
     networking.firewall = {
       allowedTCPPorts = lib.optionals cfg.enable [ cfg.settings.port ];
       allowedUDPPorts = lib.optionals cfg.enable [ cfg.settings.port ];
