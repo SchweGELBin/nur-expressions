@@ -12,11 +12,9 @@ in
   config = lib.mkIf (config.nur.smoos.enable && cfg.enable) {
     networking.firewall = {
       allowedTCPPorts = [
+        cfg.settings.jsonapi-port
         cfg.settings.port
-      ]
-      ++ lib.optional (
-        cfg.settings.jsonapi-enable && cfg.settings.jsonapi-port != null
-      ) cfg.settings.jsonapi-port;
+      ];
       allowedUDPPorts = [ cfg.settings.port ];
     };
 
@@ -26,21 +24,14 @@ in
         preStart =
           let
             defaultSettings = import "${cfg.package}/settings.nix";
-            settings =
-              defaultSettings
-              // {
-                Address = cfg.settings.address;
-                Port = cfg.settings.port;
-                JsonApi = defaultSettings.JsonApi // {
-                  Enabled = cfg.settings.jsonapi-enable;
-                };
-              }
-              // lib.optionalAttrs (cfg.settings.jsonapi-port != null) {
-                JsonApi = defaultSettings.JsonApi // {
-                  Enabled = cfg.settings.jsonapi-enable;
-                  Port = cfg.settings.jsonapi-port;
-                };
+            settings = defaultSettings // {
+              Address = cfg.settings.address;
+              Port = cfg.settings.port;
+              JsonApi = defaultSettings.JsonApi // {
+                Enabled = cfg.settings.jsonapi-enable;
+                Port = cfg.settings.jsonapi-port;
               };
+            };
           in
           lib.optionalString cfg.settings.force ''
             if [ -f ./settings.json ]; then rm ./settings.json; fi
@@ -146,10 +137,10 @@ in
             type = lib.types.bool;
           };
           jsonapi-port = lib.mkOption {
-            default = null;
+            default = cfg.settings.port;
             description = "Your JsonApi Port";
             example = 1128;
-            type = with lib.types; nullOr port;
+            type = lib.types.port;
           };
           port = lib.mkOption {
             default = 1027;
