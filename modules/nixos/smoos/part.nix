@@ -25,8 +25,10 @@ in
           let
             defaultSettings = import "${cfg.package}/settings.nix";
             settings = defaultSettings // {
-              Address = cfg.settings.address;
-              Port = cfg.settings.port;
+              Server = defaultSettings.Server // {
+                Address = cfg.settings.address;
+                Port = cfg.settings.port;
+              };
               JsonApi = defaultSettings.JsonApi // {
                 Enabled = cfg.settings.jsonapi-enable;
                 Port = cfg.settings.jsonapi-port;
