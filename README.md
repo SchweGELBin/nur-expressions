@@ -4,6 +4,7 @@ My personal [NUR](https://github.com/nix-community/NUR) repository.
 ## Packages
 - [bible4tui](https://github.com/SchweGELBin/Bible4TUI) - Bible program for the terminal
 - [catspeak](https://github.com/SchweGELBin/catspeak) - Cowsay like program of a speaking cat
+- [firefox-addons](./pkgs/firefox-addons) - Some firefox addons
 - [mixbot](https://github.com/SchweGELBin/MiXBot) - Minecraft MiXBot
 - [smoos-bot](https://github.com/SchweGELBin/smoos/tree/main/smoos-bot) - Super Mario Odyssey: Online Server - Bot
 - [smoos-cs](https://github.com/SchweGELBin/smoos/tree/main/smoos-cs) - Super Mario Odyssey: Online Server - C#
