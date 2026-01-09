@@ -5,6 +5,7 @@
 {
   bible4tui = pkgs.callPackage ./pkgs/bible4tui { };
   catspeak = pkgs.callPackage ./pkgs/catspeak { };
+  firefox-addons = pkgs.callPackage ./pkgs/firefox-addons { };
   mixbot = pkgs.callPackage ./pkgs/mixbot { };
   smoos-bot = pkgs.callPackage ./pkgs/smoos/bot.nix { };
   smoos-cs = pkgs.callPackage ./pkgs/smoos/cs.nix { };
