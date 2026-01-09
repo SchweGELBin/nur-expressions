@@ -49,7 +49,7 @@ lib.checkListOfEnum "usernix: modes" validModes modes
     version = "0.1.0";
 
     buildCommand = lib.concatLines [
-      "mkdir -p $out && generate() { cat $1 | grep \"^user_pref(\" | sort | sed -e 's/^user_pref(//g' -e 's/);.*/;/g' -e '/_user\.js\.parrot/d' -e 's/, / = /g' > $out/$2.nix; }"
+      "mkdir -p $out && generate() { echo \"{ \n$(cat $1 | grep \"^user_pref(\" | sort | sed -e 's/^user_pref(//g' -e 's/);.*/;/g' -e '/_user\.js\.parrot/d' -e 's/, / = /g')\n}\" > $out/$2.nix; }"
       (lib.optionalString (lib.elem "arkenfox" modes) "generate ${arkenfox} arkenfox")
       (lib.optionalString (lib.elem "betterfox" modes) "generate ${betterfox} betterfox")
       (lib.optionalString (lib.elem "fastfox" modes) "generate ${fastfox} fastfox")

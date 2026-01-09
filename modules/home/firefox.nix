@@ -84,6 +84,7 @@ in
         harden = {
           enable = lib.mkEnableOption "Enable hardening";
           mode = lib.mkOption {
+            default = "arkenfox";
             description = "Hardening config";
             type = lib.types.enum [
               "arkenfox"

@@ -14,7 +14,7 @@ My personal [NUR](https://github.com/nix-community/NUR) repository.
 
 ## Modules
 ### Home Manager
-[nur.firefox](./modules/home/firefox.nix)
+- [nur.firefox](./modules/home/firefox.nix)
 
 ### NixOS
 - [nur.cache](./modules/nixos/cache.nix)
