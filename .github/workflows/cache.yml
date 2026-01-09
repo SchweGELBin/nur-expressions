@@ -21,7 +21,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-24.04-arm]
-        package: [bible4tui, catspeak, mixbot, smoos-bot, smoos-cs, smoos-rs, website]
+        package: [bible4tui, catspeak, mixbot, smoos-bot, smoos-cs, smoos-rs, usernix, website]
     steps:
     - uses: actions/checkout@v4
     - uses: cachix/install-nix-action@v25

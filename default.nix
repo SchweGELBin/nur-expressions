@@ -10,5 +10,6 @@
   smoos-bot = pkgs.callPackage ./pkgs/smoos/bot.nix { };
   smoos-cs = pkgs.callPackage ./pkgs/smoos/cs.nix { };
   smoos-rs = pkgs.callPackage ./pkgs/smoos/rs.nix { };
+  usernix = pkgs.callPackage ./pkgs/usernix { };
   website = pkgs.callPackage ./pkgs/website { };
 }
