@@ -7,7 +7,7 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "gen-userstyles";
-  version = "2026-01-09";
+  version = "2026.01.09";
 
   src = fetchurl {
     url = "https://github.com/SchweGELBin/catppuccin-userstyles/releases/download/${finalAttrs.version}/import.json";
