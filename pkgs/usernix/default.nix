@@ -46,7 +46,7 @@ lib.checkListOfEnum "usernix: modes" validModes modes
   stdenvNoCC.mkDerivation
   {
     pname = "usernix";
-    version = "0.1.0";
+    version = "2026.01.13";
 
     buildCommand = lib.concatLines [
       "mkdir -p $out && generate() { echo \"{ \n$(cat $1 | grep \"^user_pref(\" | sort | sed -e 's/^user_pref(//g' -e 's/);.*/;/g' -e '/_user\.js\.parrot/d' -e 's/, / = /g')\n}\" > $out/$2.nix; }"
