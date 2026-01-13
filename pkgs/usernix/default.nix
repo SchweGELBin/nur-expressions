@@ -16,8 +16,8 @@ in
 }:
 let
   arkenfox = fetchurl {
-    url = "https://raw.githubusercontent.com/arkenfox/user.js/0f14e030b3a9391e761c03ce3c260730a78a4db6/user.js";
-    hash = "sha256-jxzIiARi+GXD+GSGPr1exeEHjR/LsXSUQPGZ+hF36xg=";
+    url = "https://raw.githubusercontent.com/arkenfox/user.js/2e88889602d5a7aa19972a2e0fe4e0f7eac2cecf/user.js";
+    hash = "sha256-I5u32jiigCch3/KFRYu0NWWDrP01uD0zUKGhTm0famw=";
   };
   betterfox = fetchurl {
     url = "https://raw.githubusercontent.com/yokoffing/Betterfox/eee6e58b2b0ee10a59efb6586a5db07ae181d8c7/user.js";
