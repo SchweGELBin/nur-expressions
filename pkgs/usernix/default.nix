@@ -16,27 +16,27 @@ in
 }:
 let
   arkenfox = fetchurl {
-    url = "https://raw.githubusercontent.com/arkenfox/user.js/refs/heads/master/user.js";
+    url = "https://raw.githubusercontent.com/arkenfox/user.js/0f14e030b3a9391e761c03ce3c260730a78a4db6/user.js";
     hash = "sha256-jxzIiARi+GXD+GSGPr1exeEHjR/LsXSUQPGZ+hF36xg=";
   };
   betterfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/refs/heads/main/user.js";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/eee6e58b2b0ee10a59efb6586a5db07ae181d8c7/user.js";
     hash = "sha256-ZpWvGPD/nzOrYln+cnm3j/T02zsNHEsI053rEuPhQxQ=";
   };
   fastfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/refs/heads/main/Fastfox.js";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/eee6e58b2b0ee10a59efb6586a5db07ae181d8c7/Fastfox.js";
     hash = "sha256-sUXA1/SB+dPw89GMEROWrwrUD3zNhhIsHI5PGAbNGRc=";
   };
   peskyfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/refs/heads/main/Peskyfox.js";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/eee6e58b2b0ee10a59efb6586a5db07ae181d8c7/Peskyfox.js";
     hash = "sha256-ZrSE66p4vgG4YtdEzVnaks0U9sNzOfvZN+TTdvdKyYQ=";
   };
   securefox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/refs/heads/main/Securefox.js";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/eee6e58b2b0ee10a59efb6586a5db07ae181d8c7/Securefox.js";
     hash = "sha256-+378JSYIzz2paoR2J3+Hh2ENtPb6bIwd/R7HeLtPzDM=";
   };
   smoothfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/refs/heads/main/Smoothfox.js";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/eee6e58b2b0ee10a59efb6586a5db07ae181d8c7/Smoothfox.js";
     hash = "sha256-S1zDXctpV1jNlV9DCua4fYMHfR7T34V3gQi780ShFpk=";
   };
 in
