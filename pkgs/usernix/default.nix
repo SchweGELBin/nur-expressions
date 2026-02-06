@@ -20,23 +20,23 @@ let
     hash = "sha256-I5u32jiigCch3/KFRYu0NWWDrP01uD0zUKGhTm0famw=";
   };
   betterfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/eee6e58b2b0ee10a59efb6586a5db07ae181d8c7/user.js";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/310cbdee6ca20eb881749a559cb572ce9272a981/user.js";
     hash = "sha256-ZpWvGPD/nzOrYln+cnm3j/T02zsNHEsI053rEuPhQxQ=";
   };
   fastfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/eee6e58b2b0ee10a59efb6586a5db07ae181d8c7/Fastfox.js";
-    hash = "sha256-sUXA1/SB+dPw89GMEROWrwrUD3zNhhIsHI5PGAbNGRc=";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/310cbdee6ca20eb881749a559cb572ce9272a981/Fastfox.js";
+    hash = "sha256-QMfZTveBhDsquppEszbzseEASMoXtplU+8bdrADNAu0=";
   };
   peskyfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/eee6e58b2b0ee10a59efb6586a5db07ae181d8c7/Peskyfox.js";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/310cbdee6ca20eb881749a559cb572ce9272a981/Peskyfox.js";
     hash = "sha256-ZrSE66p4vgG4YtdEzVnaks0U9sNzOfvZN+TTdvdKyYQ=";
   };
   securefox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/eee6e58b2b0ee10a59efb6586a5db07ae181d8c7/Securefox.js";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/310cbdee6ca20eb881749a559cb572ce9272a981/Securefox.js";
     hash = "sha256-+378JSYIzz2paoR2J3+Hh2ENtPb6bIwd/R7HeLtPzDM=";
   };
   smoothfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/eee6e58b2b0ee10a59efb6586a5db07ae181d8c7/Smoothfox.js";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/310cbdee6ca20eb881749a559cb572ce9272a981/Smoothfox.js";
     hash = "sha256-S1zDXctpV1jNlV9DCua4fYMHfR7T34V3gQi780ShFpk=";
   };
 in
@@ -46,7 +46,7 @@ lib.checkListOfEnum "usernix: modes" validModes modes
   stdenvNoCC.mkDerivation
   {
     pname = "usernix";
-    version = "2026.01.13";
+    version = "2026.02.06";
 
     buildCommand = lib.concatLines [
       "mkdir -p $out && generate() { echo \"{ \n$(cat $1 | grep \"^user_pref(\" | sort | sed -e 's/^user_pref(//g' -e 's/);.*/;/g' -e '/_user\.js\.parrot/d' -e 's/, / = /g')\n}\" > $out/$2.nix; }"
