@@ -39,6 +39,7 @@ in
           "/subscribe"
           "/unauthenticated"
           "/verification"
+          "https://archive.softwareheritage.org/browse"
           "https://external-content.duckduckgo.com"
           "https://web.archive.org/web"
         ];
