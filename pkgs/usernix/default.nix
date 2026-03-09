@@ -16,8 +16,8 @@ in
 }:
 let
   arkenfox = fetchurl {
-    url = "https://raw.githubusercontent.com/arkenfox/user.js/cc65f3c21bc118819c9ed5840c41233e02fad833/user.js";
-    hash = "sha256-JbcA1+OrZ0jRl0o5oZMMPlg7WfdSGx+7lm8+65AGNyY=";
+    url = "https://raw.githubusercontent.com/arkenfox/user.js/3a81a88ab2980068609b0100ade46880bc8b4320/user.js";
+    hash = "sha256-lpn1PPNmLps/PB8QO21WgGcIHtgxBTSSGu4dFVAxvQY=";
   };
   betterfox = fetchurl {
     url = "https://raw.githubusercontent.com/yokoffing/Betterfox/f1c8e3809dbd23f4f9aa1e5e70805c61734b1f14/user.js";
@@ -46,7 +46,7 @@ lib.checkListOfEnum "usernix: modes" validModes modes
   stdenvNoCC.mkDerivation
   {
     pname = "usernix";
-    version = "2026.03.02";
+    version = "2026.03.09";
 
     buildCommand = lib.concatLines [
       "mkdir -p $out && generate() { echo \"{ \n$(cat $1 | grep \"^user_pref(\" | sort | sed -e 's/^user_pref(//g' -e 's/);.*/;/g' -e '/_user\.js\.parrot/d' -e 's/, / = /g')\n}\" > $out/$2.nix; }"
