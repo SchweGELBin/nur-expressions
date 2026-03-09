@@ -20,6 +20,7 @@ buildXpi rec {
     url = "https://addons.mozilla.org/firefox/downloads/file/4710145/darkreader-${version}.xpi";
     hash = "sha256-mj5s2sU/ICV72BJkUywWr+2tAOsmI73tie0rMLHkAkM=";
   };
+
   addonId = "addon@darkreader.org";
 
   meta = {
