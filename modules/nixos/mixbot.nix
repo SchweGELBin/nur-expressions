@@ -37,7 +37,7 @@ in
       secretFile = lib.mkOption {
         description = ''
           File containing environment variables
-          Needs `MIXBOT_DISCORD_TOKEN`
+          Needs `MIXBOT_DISCORD_TOKEN` to enable the Discord Bot
         '';
         example = "config.sops.secrets.mixbot_env.path";
         type = lib.types.path;
@@ -46,23 +46,42 @@ in
         description = "Configuration options for the Minecraft Bot";
         type = lib.types.submodule {
           options = {
-            discord_id = lib.mkOption {
-              description = "Your Discord User ID";
-              example = "123456789012345678";
+            accounts = lib.mkOption {
+              default = "MiXBot,false";
+              description = "Your Bot's Name + Auth Mode";
+              example = "your@domain.tld,true";
               type = lib.types.str;
             };
             host = lib.mkOption {
               default = "localhost";
               description = "Your Server IP";
+              example = "your.domain.tld";
               type = lib.types.str;
             };
-            name = lib.mkOption {
-              default = "MiXBot";
-              description = "Your Bot's Name";
-              example = "Bot";
+            owner = lib.mkOption {
+              default = "";
+              description = "Your Bot's Owner Name";
+              example = "SchweGELBin";
               type = lib.types.str;
             };
-            online = lib.mkEnableOption "Authenticate with Microsoft";
+            prefix = lib.mkOption {
+              default = "!";
+              description = "Your Bot's Command Prefix";
+              example = ".";
+              type = lib.types.str;
+            };
+            discord_id = lib.mkOption {
+              default = "";
+              description = "Your Discord User ID";
+              example = "123456789012345678";
+              type = lib.types.str;
+            };
+            discord_prefix = lib.mkOption {
+              default = "!";
+              description = "Your Discord Bot Command Prefix";
+              example = ".";
+              type = lib.types.str;
+            };
           };
         };
       };
