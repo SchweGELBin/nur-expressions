@@ -1,5 +1,5 @@
 # nur-expressions
-My personal [NUR](https://github.com/nix-community/NUR) repository.
+SchweGELBin's NUR expressions
 
 ## Packages
 - [bible4tui](https://github.com/SchweGELBin/Bible4TUI) - Bible program for the terminal

@@ -1,5 +1,5 @@
 {
-  description = "SchweGELBin's nur-expressions";
+  description = "SchweGELBin's NUR expressions";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
