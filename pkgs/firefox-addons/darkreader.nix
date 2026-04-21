@@ -6,19 +6,19 @@
 
 buildXpi rec {
   pname = "darkreader";
-  version = "4.9.123";
+  version = "4.9.124";
 
   /*
     # The GitHub Releases are broken
     src = fetchurl {
       url = "https://github.com/darkreader/darkreader/releases/download/v${version}/darkreader-firefox.xpi";
-      hash = "sha256-UcFs3oXn0cLW0WLD9a4mI3nNaH2sg+PtX+tVCjL/8U8=";
+      hash = "sha256-0RS8qFtPsuOHCnx4Z67wtQc4rNNltYipRMrtrwCpKQ4=";
     };
   */
 
   src = fetchurl {
-    url = "https://addons.mozilla.org/firefox/downloads/file/4710145/darkreader-${version}.xpi";
-    hash = "sha256-mj5s2sU/ICV72BJkUywWr+2tAOsmI73tie0rMLHkAkM=";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4748915/darkreader-${version}.xpi";
+    hash = "sha256-znA8mFRZmc7gtcQW9P1KMIDxQFRA8AXVxc8jrAhovL0=";
   };
 
   addonId = "addon@darkreader.org";
