@@ -20,23 +20,23 @@ let
     hash = "sha256-5KszxpFImRdc9wNeDlei1/CKyIfY+VfxGZ5+Sbvn4z4=";
   };
   betterfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/5fa3578d8d0203991412dc9f9bad90fe5d805971/user.js";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/46387cc0428a888a2ddb146e0e53a2883ebe4235/user.js";
     hash = "sha256-6DJW9FMUkUViO1nOEZ4iyBRpI9Nk8C9u4s2Bh/Jv/K0=";
   };
   fastfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/5fa3578d8d0203991412dc9f9bad90fe5d805971/Fastfox.js";
-    hash = "sha256-IdqV9GQg+YsyZpntD37E43nwawA321uj4F/C57eMdBU=";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/46387cc0428a888a2ddb146e0e53a2883ebe4235/Fastfox.js";
+    hash = "sha256-YffmgqqZkarDErtO9FD+XM1FgwUcRF4W0NRzwzCHY78=";
   };
   peskyfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/5fa3578d8d0203991412dc9f9bad90fe5d805971/Peskyfox.js";
-    hash = "sha256-ssL0IvcCbpgMsakROY4Atga1pPXKAlignu+4LbqSBYM=";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/46387cc0428a888a2ddb146e0e53a2883ebe4235/Peskyfox.js";
+    hash = "sha256-mP2nlFdbMyxBolymXdsUaa669A0RQaWCYoIKPhWQn6A=";
   };
   securefox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/5fa3578d8d0203991412dc9f9bad90fe5d805971/Securefox.js";
-    hash = "sha256-6P7sWp0Z2gOSC6YtNxBsc8CobKcxKl+rE4JDS9XrzL0=";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/46387cc0428a888a2ddb146e0e53a2883ebe4235/Securefox.js";
+    hash = "sha256-1RAYCF3S02ROVkrLWjDpUmFcNXeUatf7r7lndvnX7TM=";
   };
   smoothfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/5fa3578d8d0203991412dc9f9bad90fe5d805971/Smoothfox.js";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/46387cc0428a888a2ddb146e0e53a2883ebe4235/Smoothfox.js";
     hash = "sha256-S1zDXctpV1jNlV9DCua4fYMHfR7T34V3gQi780ShFpk=";
   };
 in
@@ -46,7 +46,7 @@ lib.checkListOfEnum "usernix: modes" validModes modes
   stdenvNoCC.mkDerivation
   {
     pname = "usernix";
-    version = "2026.04.21";
+    version = "2026.05.05";
 
     buildCommand = lib.concatLines [
       "mkdir -p $out && generate() { echo \"{ \n$(cat $1 | grep \"^user_pref(\" | sort | sed -e 's/^user_pref(//g' -e 's/);.*/;/g' -e '/_user\.js\.parrot/d' -e 's/, / = /g')\n}\" > $out/$2.nix; }"
