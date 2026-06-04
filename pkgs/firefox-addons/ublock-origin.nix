@@ -6,11 +6,11 @@
 
 buildXpi rec {
   pname = "ublock-origin";
-  version = "1.71.1b0";
+  version = "1.71.1b2";
 
   src = fetchurl {
     url = "https://github.com/gorhill/uBlock/releases/download/${version}/uBlock0_${version}.firefox.signed.xpi";
-    hash = "sha256-ynGFhQ7mRqogrRIf33dZiQSEiH+Wxhp3TSJI30wYDog=";
+    hash = "sha256-DKXHzWVP/dPREVAO3lQwhypi7XQWecmAeh5E8QYM6Iw=";
   };
 
   addonId = "uBlock0@raymondhill.net";
