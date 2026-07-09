@@ -16,27 +16,27 @@ in
 }:
 let
   arkenfox = fetchurl {
-    url = "https://raw.githubusercontent.com/arkenfox/user.js/8fe9905c35a1025d1e6df69479f7625585fd956d/user.js";
-    hash = "sha256-5KszxpFImRdc9wNeDlei1/CKyIfY+VfxGZ5+Sbvn4z4=";
+    url = "https://raw.githubusercontent.com/arkenfox/user.js/7602fda9fc4058f53abe5e528942a2afe0bccf74/user.js";
+    hash = "sha256-ugm1BbuvH9L0qHd6WCIiX0L6vYgt1bus7Lmu791jpG0=";
   };
   betterfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/8bd2f5d72e8caf26f861ba2c45de16db8f0ec36d/user.js";
-    hash = "sha256-prmJFuPkfVsAN23oP1apQZHpqFoVrpQrWasqgTAha3w=";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/0a3fc9408bfb68e6adc785c31f16d9e32c846651/user.js";
+    hash = "sha256-ri/6ZTL9mSbaSwl4jgdcB+GPnoX9zVMLkXAmkaOSLZM=";
   };
   fastfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/8bd2f5d72e8caf26f861ba2c45de16db8f0ec36d/Fastfox.js";
-    hash = "sha256-KV9bveCIBiBqe5CsI3A/lo2EY5ziDW1WXuTA4eFTaX0=";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/0a3fc9408bfb68e6adc785c31f16d9e32c846651/Fastfox.js";
+    hash = "sha256-mjU0xxZmWhW8ICVn5xwg7/UFTuJXx4YhO2TSG7/m1Ek=";
   };
   peskyfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/8bd2f5d72e8caf26f861ba2c45de16db8f0ec36d/Peskyfox.js";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/0a3fc9408bfb68e6adc785c31f16d9e32c846651/Peskyfox.js";
     hash = "sha256-FwrcnlDHyHPrJGEH37qz3G9bHNpcX0wfI6bigG6uUPA=";
   };
   securefox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/8bd2f5d72e8caf26f861ba2c45de16db8f0ec36d/Securefox.js";
-    hash = "sha256-bQysEJphLIPNWL2n7wasbOinfy6ho8ONsSnhsteg4pM=";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/0a3fc9408bfb68e6adc785c31f16d9e32c846651/Securefox.js";
+    hash = "sha256-mvr5U/PY3SzfFZuWiJAd29m+QdnBoCYuWJfzPCZXwt4=";
   };
   smoothfox = fetchurl {
-    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/8bd2f5d72e8caf26f861ba2c45de16db8f0ec36d/Smoothfox.js";
+    url = "https://raw.githubusercontent.com/yokoffing/Betterfox/0a3fc9408bfb68e6adc785c31f16d9e32c846651/Smoothfox.js";
     hash = "sha256-h3eZp18vYr8DCB21LhkoGH67Yrx3xkpSOMuWcbo1w+A=";
   };
 in
@@ -46,7 +46,7 @@ lib.checkListOfEnum "usernix: modes" validModes modes
   stdenvNoCC.mkDerivation
   {
     pname = "usernix";
-    version = "2026.06.17";
+    version = "2026.07.09";
 
     buildCommand = lib.concatLines [
       "mkdir -p $out && generate() { echo \"{ \n$(cat $1 | grep \"^user_pref(\" | sort | sed -e 's/^user_pref(//g' -e 's/);.*/;/g' -e '/_user\.js\.parrot/d' -e 's/, / = /g')\n}\" > $out/$2.nix; }"
