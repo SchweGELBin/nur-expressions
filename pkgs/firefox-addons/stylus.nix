@@ -6,11 +6,11 @@
 
 buildXpi rec {
   pname = "stylus";
-  version = "2.4.5";
+  version = "2.4.10";
 
   src = fetchurl {
-    url = "https://addons.mozilla.org/firefox/downloads/file/4887700/styl_us-${version}.xpi";
-    hash = "sha256-UJVXtULZ3NSWoxaxCNrby9XPqexGpEwfN8Rj1F8yJwo=";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4947910/styl_us-${version}.xpi";
+    hash = "sha256-kHwevP6qp4iQ74LrsaAE+OYH/kgglRZc0bgwk3MRISk=";
   };
 
   addonId = "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}";
