@@ -6,11 +6,11 @@
 
 buildXpi rec {
   pname = "skip-redirect";
-  version = "3.0.1";
+  version = "3.0.2";
 
   src = fetchurl {
-    url = "https://addons.mozilla.org/firefox/downloads/file/4951882/skip_redirect-${version}.xpi";
-    hash = "sha256-6YFYCyPB35MW8E/baSHmfdyAG4y//Ib+5jZDMWdKQlM=";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4968151/skip_redirect-${version}.xpi";
+    hash = "sha256-HtnEyhX87Slj3AAdlcR0Xu2aHFu5121woxQNvVcVudc=";
   };
 
   addonId = "skipredirect@sblask";
