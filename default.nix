@@ -8,6 +8,7 @@
   firefox-addons = pkgs.callPackage ./pkgs/firefox-addons { };
   gen-userstyles = pkgs.callPackage ./pkgs/gen-userstyles { };
   mixbot = pkgs.callPackage ./pkgs/mixbot { };
+  openbible = pkgs.callPackage ./pkgs/openbible { };
   smoos-bot = pkgs.callPackage ./pkgs/smoos/bot.nix { };
   smoos-cs = pkgs.callPackage ./pkgs/smoos/cs.nix { };
   smoos-rs = pkgs.callPackage ./pkgs/smoos/rs.nix { };

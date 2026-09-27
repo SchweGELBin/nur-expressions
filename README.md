@@ -7,6 +7,7 @@ SchweGELBin's NUR expressions
 - [firefox-addons](./pkgs/firefox-addons) - Some firefox addons
 - [gen-userstyles](./pkgs/gen-userstyles) - Generate Stylus Userstyles
 - [mixbot](https://github.com/SchweGELBin/MiXBot) - Minecraft MiXBot
+- [openbible](https://github.com/SchweGELBin/OpenBible2) - OpenBible provides the Bible with as little distractions as possible
 - [smoos-bot](https://github.com/SchweGELBin/smoos/tree/main/smoos-bot) - Super Mario Odyssey: Online Server - Bot
 - [smoos-cs](https://github.com/SchweGELBin/smoos/tree/main/smoos-cs) - Super Mario Odyssey: Online Server - C#
 - [smoos-rs](https://github.com/SchweGELBin/smoos/tree/main/smoos-rs) - Super Mario Odyssey: Online Server - Rust
